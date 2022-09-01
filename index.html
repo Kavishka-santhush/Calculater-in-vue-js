@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <title>VueJs Demo Example</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    </script>
+    <style>
+        .container {
+            border: solid black 2px;
+            height: 400px;
+            width: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .calculater {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="calculater">Calculater</h1>
+        <input v-model="num1" /><br>
+        <input v-model="opt" />
+        <input v-model="num2" />
+        <button v-on:click="cal">Add two numbers</button>
+        <h2>The sum is {{sum}}</h2>
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data: function () {
+                return {
+                    num1: 0,
+                    num2: 0,
+                    opt: "",
+                    sum: 0
+                }
+            },
+            methods: {
+                cal() {
+                    if (this.opt == "+") {
+                        this.sum = parseInt(this.num1) + parseInt(this.num2);
+                    }
+                    else if (this.opt == "-") {
+                        this.sum = parseInt(this.num1) - parseInt(this.num2);
+                    }
+                    else if (this.opt == "*") {
+                        this.sum = parseInt(this.num1) * parseInt(this.num2);
+                    }
+                    else if (this.opt == "/") {
+                        this.sum = parseInt(this.num1) / parseInt(this.num2);
+                    }
+                    else {
+                        this.sum = "invalid operation";
+                    }
+                }
+            }
+        })
+        app.mount(".container")
+    </script>
+</body>
+
+</html>
